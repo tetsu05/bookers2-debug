@@ -8,5 +8,11 @@ Rails.application.routes.draw do
   end
   resources :homes
   get 'home/about' => 'homes#about'
+  resources :users, only:[:index, :show, :edit, :update] do
+  member do
+    get :follows, :followers
+  end
+  resource :relationships, only: [:create, :destroy]
+  end
 
 end
